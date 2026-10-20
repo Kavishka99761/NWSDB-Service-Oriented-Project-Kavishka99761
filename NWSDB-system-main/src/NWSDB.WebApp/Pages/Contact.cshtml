@@ -1,0 +1,109 @@
+@page
+@model ContactModel
+@{
+    ViewData["Title"] = "Contact Customer Service";
+}
+
+<div class="container py-4">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary"><i class="bi bi-headset me-2"></i>Contact NWSDB Customer Service</h2>
+        <p class="text-muted">We are committed to serving clean and safe water across Sri Lanka 24/7.</p>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.FeedbackMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm mb-4" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @Model.FeedbackMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row g-4">
+        <!-- Emergency Hotline & Regional Centers -->
+        <div class="col-lg-5">
+            <div class="card card-custom p-4 mb-4 bg-primary text-white" style="background: linear-gradient(135deg, #002244, #004080) !important;">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-telephone-inbound-fill fs-1 text-warning me-3"></i>
+                    <div>
+                        <h4 class="mb-0 fw-bold">Emergency Hotline: 1939</h4>
+                        <small class="text-white-50">Toll-free 24 hours / 365 days across Sri Lanka</small>
+                    </div>
+                </div>
+                <p class="small text-white-50 mb-0">
+                    Call 1939 for burst pipes, sudden water interruptions, pressure drops, or emergency water quality reports.
+                </p>
+            </div>
+
+            <div class="card card-custom p-4 mb-4">
+                <h5 class="fw-bold text-primary mb-3"><i class="bi bi-building me-2"></i>Head Office</h5>
+                <p class="small text-secondary mb-2">
+                    <i class="bi bi-geo-alt-fill text-danger me-2"></i>National Water Supply and Drainage Board<br />
+                    Galle Road, Ratmalana, Sri Lanka.
+                </p>
+                <p class="small text-secondary mb-2">
+                    <i class="bi bi-telephone-fill text-primary me-2"></i>General Telephone: +94 11 263 8888
+                </p>
+                <p class="small text-secondary mb-0">
+                    <i class="bi bi-envelope-fill text-info me-2"></i>Email: info@waterboard.gov.lk
+                </p>
+            </div>
+
+            <div class="card card-custom p-4">
+                <h5 class="fw-bold text-primary mb-3"><i class="bi bi-map me-2"></i>Major Regional Support Offices</h5>
+                <ul class="list-unstyled small mb-0">
+                    <li class="mb-2"><strong>Western Province:</strong> Colombo Central Office, Maligakanda.</li>
+                    <li class="mb-2"><strong>Central Province:</strong> Peradeniya Road, Kandy.</li>
+                    <li class="mb-2"><strong>Southern Province:</strong> Main Street, Galle.</li>
+                    <li><strong>Northern Province:</strong> Kandarodai Road, Jaffna.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact / Complaint Form -->
+        <div class="col-lg-7">
+            <div class="card card-custom p-4">
+                <h4 class="fw-bold text-primary mb-3"><i class="bi bi-send-fill me-2"></i>Submit an Inquiry or Water Issue</h4>
+                <p class="small text-muted mb-4">Fill out the form below. Your request will be routed to your respective regional technical division.</p>
+
+                <form method="post">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Your Full Name:</label>
+                            <input type="text" asp-for="Name" class="form-control" placeholder="e.g. Sunil Perera" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">NWSDB Account Number (if applicable):</label>
+                            <input type="text" asp-for="AccountNumber" class="form-control" placeholder="e.g. ACC10001" />
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Contact Phone Number:</label>
+                            <input type="tel" asp-for="ContactPhone" class="form-control" placeholder="077 123 4567" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Issue Category:</label>
+                            <select asp-for="Subject" class="form-select" required>
+                                <option value="Billing Dispute">Billing Dispute / Tariff Query</option>
+                                <option value="Water Interruption">Water Interruption / Pressure Issue</option>
+                                <option value="Pipe Leakage">Pipe Leakage / Main Burst</option>
+                                <option value="Meter Issue">Defective Meter / Reading Query</option>
+                                <option value="New Connection">New Connection Request</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold small">Message / Incident Description:</label>
+                        <textarea asp-for="Message" class="form-control" rows="5" placeholder="Please provide details including location or street name..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg fw-bold px-4" style="background-color: #0077b6;">
+                        <i class="bi bi-paperplane-fill me-2"></i> Send Inquiry / Ticket
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

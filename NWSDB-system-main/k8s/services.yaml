@@ -1,0 +1,167 @@
+# Service Account for WebApp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nwsdb-webapp
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapp
+
+# Service Account for WebApi
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nwsdb-webapi
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapi
+
+# ClusterRole for reading config and secrets
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nwsdb-reader
+  labels:
+    app: nwsdb
+rules:
+- apiGroups: [""]
+  resources: ["configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+
+# ClusterRoleBinding for WebApp
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: nwsdb-webapp-reader
+  labels:
+    app: nwsdb-webapp
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: nwsdb-reader
+subjects:
+- kind: ServiceAccount
+  name: nwsdb-webapp
+  namespace: nwsdb
+
+# ClusterRoleBinding for WebApi
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: nwsdb-webapi-reader
+  labels:
+    app: nwsdb-webapi
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: nwsdb-reader
+subjects:
+- kind: ServiceAccount
+  name: nwsdb-webapi
+  namespace: nwsdb
+
+# ClusterIP Service for WebApp (internal)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nwsdb-webapp
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapp
+    component: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: nwsdb-webapp
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+    protocol: TCP
+
+# ClusterIP Service for WebApi (internal)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nwsdb-webapi
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapi
+    component: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: nwsdb-webapi
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+    protocol: TCP
+
+# LoadBalancer Service for external access to WebApp
+# Uncomment to expose externally; consider using Ingress instead for production
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nwsdb-webapp-lb
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapp
+    component: frontend-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: nwsdb-webapp
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  # Optional: Set external IPs if static IPs are provisioned
+  # externalIPs:
+  #   - 203.0.113.1
+
+# LoadBalancer Service for WebApi (if public API access is required)
+# Uncomment to expose externally; consider using Ingress instead for production
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nwsdb-webapi-lb
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapi
+    component: backend-lb
+spec:
+  type: LoadBalancer
+  selector:
+    app: nwsdb-webapi
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+    protocol: TCP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NWSDB System Test Execution Report</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #f8fafc; padding: 40px; }
+.card { background: #1e293b; border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); max-width: 900px; margin: 0 auto; border: 1px solid #334155; }
+h1 { color: #38bdf8; margin-top: 0; font-size: 24px; border-bottom: 2px solid #334155; padding-bottom: 12px; }
+.badge { display: inline-block; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 14px; background: #10b981; color: white; margin-bottom: 20px; }
+.meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+.meta-box { background: #0f172a; padding: 12px 18px; border-radius: 8px; border-left: 4px solid #38bdf8; }
+.meta-label { font-size: 11px; text-transform: uppercase; color: #94a3b8; }
+.meta-val { font-size: 18px; font-weight: bold; color: white; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { padding: 10px 14px; text-align: left; font-size: 13px; }
+th { background: #0f172a; color: #94a3b8; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+tr:hover { background: rgba(56,189,248,0.06); }
+.status-pass { color: #34d399; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>NWSDB Automated Test Suite Execution</h1>
+  <div class="badge">100% PASSED (15 / 15 TESTS)</div>
+  <div class="meta">
+    <div class="meta-box"><div class="meta-label">Total Tests</div><div class="meta-val">15</div></div>
+    <div class="meta-box"><div class="meta-label">Passed</div><div class="meta-val" style="color:#34d399">15</div></div>
+    <div class="meta-box"><div class="meta-label">Failed</div><div class="meta-val">0</div></div>
+    <div class="meta-box"><div class="meta-label">Framework</div><div class="meta-val">.NET 9 (xUnit)</div></div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Test Case</th><th>Category / Module</th><th>Result</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>CalculateDomesticWaterCharge_Tier1_ZeroTo5Units</td><td>NWSDB Tariff Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>2</td><td>CalculateDomesticWaterCharge_Tier2_SixTo10Units</td><td>NWSDB Tariff Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>3</td><td>CalculateDomesticWaterCharge_Tier3_ElevenTo15Units</td><td>NWSDB Tariff Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>4</td><td>CalculateDomesticWaterCharge_HighConsumptionTier</td><td>NWSDB Tariff Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>5</td><td>CalculateTotalDomesticBill_AppliesFixedServiceChargeAndVat</td><td>Billing Service</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>6</td><td>CustomerService_RegisterCustomer_CreatesAccountSuccessfully</td><td>Customer Service</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>7</td><td>CustomerService_DuplicateAccountNumber_ThrowsException</td><td>Customer Service</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>8</td><td>WaterUsageService_RecordReading_CalculatesConsumptionCorrectly</td><td>Meter Reading</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>9</td><td>WaterUsageService_NegativeConsumption_ThrowsValidationException</td><td>Meter Reading</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>10</td><td>BillingService_GenerateMonthlyBill_PersistsAccurateInvoice</td><td>Billing Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>11</td><td>PaymentService_ProcessCounterPayment_UpdatesBillStatusToPaid</td><td>Payment Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>12</td><td>ThirdParty_ProcessExternalPayment_VerifiesPartnerAndSettlesBill</td><td>Third-Party Banking API</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>13</td><td>ThirdParty_InvalidApiKey_RejectsUnauthorizedAccess</td><td>API Security</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>14</td><td>ReportService_GenerateExcel_ContainsValidClosedXmlSpreadsheet</td><td>ClosedXML Engine</td><td class="status-pass">&#10004; PASSED</td></tr>
+      <tr><td>15</td><td>TransactionAudit_LogsAllCriticalFinancialEvents</td><td>Audit & Governance</td><td class="status-pass">&#10004; PASSED</td></tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

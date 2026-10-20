@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\NWSDB.Core\NWSDB.Core.csproj" />
+    <ProjectReference Include="..\NWSDB.Services\NWSDB.Services.csproj" />
+    <ProjectReference Include="..\NWSDB.Data\NWSDB.Data.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

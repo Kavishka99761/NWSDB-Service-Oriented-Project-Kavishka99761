@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NWSDB.Core/NWSDB.Core.csproj" />
+    <Project Path="src/NWSDB.Data/NWSDB.Data.csproj" />
+    <Project Path="src/NWSDB.DesktopApp/NWSDB.DesktopApp.csproj" />
+    <Project Path="src/NWSDB.Services/NWSDB.Services.csproj" />
+    <Project Path="src/NWSDB.WebApi/NWSDB.WebApi.csproj" />
+    <Project Path="src/NWSDB.WebApp/NWSDB.WebApp.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NWSDB.Tests/NWSDB.Tests.csproj" />
+  </Folder>
+</Solution>

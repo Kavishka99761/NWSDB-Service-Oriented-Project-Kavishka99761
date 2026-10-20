@@ -1,0 +1,90 @@
+@page
+@model NWSDB.WebApp.Pages.Portal.UsageModel
+@{
+    ViewData["Title"] = "Water Usage Records";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold text-primary mb-1"><i class="bi bi-speedometer2 me-2"></i>Water Usage & Meter Readings</h3>
+            <p class="text-muted mb-0">Monthly consumption logs for Account <strong>@(Model.Customer?.AccountNumber ?? "ACC10001")</strong> (@Model.Customer?.FullName)</p>
+        </div>
+        <div>
+            <a href="http://localhost:5000/api/reports/usage/@(Model.Customer?.AccountNumber ?? "ACC10001")/excel" class="btn btn-outline-success">
+                <i class="bi bi-file-earmark-excel me-1"></i> Export Usage to Excel
+            </a>
+        </div>
+    </div>
+
+    <!-- Usage Visualizer Cards -->
+    <div class="row g-4 mb-4">
+        @foreach (var u in Model.Usages.Take(3))
+        {
+            <div class="col-md-4">
+                <div class="card card-custom p-4 border-top border-4 border-info">
+                    <span class="badge bg-light text-info border align-self-start mb-2">@u.MonthYear</span>
+                    <h2 class="fw-bold text-primary mb-0">@u.UnitsConsumed <small class="fs-6 text-muted">m³ (Units)</small></h2>
+                    <hr />
+                    <div class="small text-secondary">
+                        <div class="d-flex justify-content-between">
+                            <span>Previous Meter:</span>
+                            <span class="fw-bold">@u.PreviousReading</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Current Meter:</span>
+                            <span class="fw-bold">@u.CurrentReading</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Officer:</span>
+                            <span>@u.MeterReaderName</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Detailed Ledger Table -->
+    <div class="card card-custom p-4">
+        <h5 class="fw-bold text-primary mb-3">All Meter Reading History</h5>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Billing Month</th>
+                        <th>Previous Reading</th>
+                        <th>Current Reading</th>
+                        <th>Units Consumed (m³)</th>
+                        <th>Reading Date</th>
+                        <th>Field Officer</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Usages.Any())
+                    {
+                        @foreach (var u in Model.Usages)
+                        {
+                            <tr>
+                                <td class="fw-bold text-primary">@u.MonthYear</td>
+                                <td>@u.PreviousReading</td>
+                                <td>@u.CurrentReading</td>
+                                <td class="fw-bold text-info fs-6">@u.UnitsConsumed</td>
+                                <td>@u.ReadingDate.ToString("yyyy-MM-dd")</td>
+                                <td>@u.MeterReaderName</td>
+                                <td class="small text-muted">@u.Remarks</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-3">No usage records available.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

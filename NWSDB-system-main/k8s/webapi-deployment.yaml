@@ -1,0 +1,158 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nwsdb-webapi
+  namespace: nwsdb
+  labels:
+    app: nwsdb-webapi
+    component: backend
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: nwsdb-webapi
+  template:
+    metadata:
+      labels:
+        app: nwsdb-webapi
+        component: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: nwsdb-webapi
+
+      # Image pull secrets for private registry
+      imagePullSecrets:
+        - name: acr-secret
+
+      containers:
+      - name: webapi
+        image: nwsdbacr.azurecr.io/nwsdb-webapi:latest
+        imagePullPolicy: Always
+
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+
+        # Environment variables from ConfigMap
+        envFrom:
+        - configMapRef:
+            name: nwsdb-config
+
+        # Additional environment variables from Secrets
+        env:
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: nwsdb-secrets
+              key: jwt-secret-key
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: nwsdb-secrets
+              key: db-password
+        - name: DATABASE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: nwsdb-secrets
+              key: db-username
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
+
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: http
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 2
+
+        # Resource management
+        resources:
+          requests:
+            cpu: 300m
+            memory: 512Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+
+        # Security context
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+
+        # Volume mounts
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: app-logs
+          mountPath: /app/logs
+        - name: database
+          mountPath: /data
+
+      # Pod security and networking
+      securityContext:
+        fsGroup: 1000
+
+      # Node affinity - prefer backend nodes if labeled
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - nwsdb-webapi
+              topologyKey: kubernetes.io/hostname
+
+      # Tolerations for node taints
+      tolerations:
+      - key: "workload"
+        operator: "Equal"
+        value: "backend"
+        effect: "NoSchedule"
+
+      # Volumes
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: app-logs
+        emptyDir: {}
+      - name: database
+        # For production, use persistent volume
+        # persistentVolumeClaim:
+        #   claimName: nwsdb-database-pvc
+        # For development, use emptyDir
+        emptyDir: {}
+
+      # Restart policy
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30

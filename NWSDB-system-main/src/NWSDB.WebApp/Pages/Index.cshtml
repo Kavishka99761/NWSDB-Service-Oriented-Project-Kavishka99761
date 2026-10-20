@@ -1,0 +1,192 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "National Water Supply & Drainage Board";
+}
+
+<!-- Hero Section -->
+<div class="bg-primary text-white py-5 mb-5 rounded-4 shadow-sm" style="background: linear-gradient(135deg, #002b5c 0%, #00509e 100%) !important;">
+    <div class="container py-4">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="badge bg-info text-dark px-3 py-2 rounded-pill fw-bold mb-3">Official Service-Oriented Portal</span>
+                <h1 class="display-5 fw-bold mb-3">Clean Water, Sustainable Future</h1>
+                <p class="lead mb-4 opacity-90">
+                    Welcome to the Sri Lanka National Water Supply & Drainage Board (NWSDB) official digital service gateway. View your water usage, check current bills, and pay securely online or through our verified banking partners.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a asp-page="/Payment" class="btn btn-warning btn-lg fw-bold px-4 shadow">
+                        <i class="bi bi-credit-card-2-front me-2"></i>Pay Bill Online
+                    </a>
+                    <a asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4">
+                        <i class="bi bi-person-plus me-2"></i>Register Connection
+                    </a>
+                    <a href="http://localhost:5000/swagger" target="_blank" class="btn btn-outline-info btn-lg px-4">
+                        <i class="bi bi-code-slash me-2"></i>API Services
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Bill Inquiry Card -->
+            <div class="col-lg-5">
+                <div class="card card-custom p-4 text-dark shadow-lg">
+                    <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-search me-2"></i>Instant Bill & Payment Lookup</h5>
+                    <p class="small text-muted mb-3">Enter your 8-digit NWSDB Account Number to view your latest billing details immediately.</p>
+                    
+                    <form method="get" asp-page="/Payment">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">NWSDB Account Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-hash"></i></span>
+                                <input type="text" name="accountNumber" class="form-control form-control-lg" placeholder="e.g. ACC10001" required />
+                            </div>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold" style="background-color: #0077b6;">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Proceed to Pay
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="pt-2 border-top">
+                        <small class="text-muted d-block mb-1 fw-bold">Try Sample Test Accounts:</small>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a asp-page="/Payment" asp-route-accountNumber="ACC10001" class="badge bg-light text-primary text-decoration-none border py-2 px-2">ACC10001 (Colombo)</a>
+                            <a asp-page="/Payment" asp-route-accountNumber="ACC10002" class="badge bg-light text-primary text-decoration-none border py-2 px-2">ACC10002 (Kandy)</a>
+                            <a asp-page="/Payment" asp-route-accountNumber="ACC10003" class="badge bg-light text-primary text-decoration-none border py-2 px-2">ACC10003 (Galle)</a>
+                            <a asp-page="/Payment" asp-route-accountNumber="ACC10004" class="badge bg-light text-primary text-decoration-none border py-2 px-2">ACC10004 (Gampaha)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <!-- Key Core Modules -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4 border-start border-4 border-primary">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle me-3">
+                        <i class="bi bi-shield-check fs-3"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Secure Bill Payment</h5>
+                        <small class="text-muted">Instant validation & receipts</small>
+                    </div>
+                </div>
+                <p class="text-secondary small mb-3">
+                    Customers can instantly settle outstanding water charges via Visa, MasterCard, or integrated Internet Banking with immediate digital confirmations.
+                </p>
+                <a asp-page="/Payment" class="fw-bold text-decoration-none mt-auto text-primary">Make a Payment <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4 border-start border-4 border-info">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-info bg-opacity-10 text-info p-3 rounded-circle me-3">
+                        <i class="bi bi-speedometer fs-3"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Live Usage Tracking</h5>
+                        <small class="text-muted">Meter readings & history</small>
+                    </div>
+                </div>
+                <p class="text-secondary small mb-3">
+                    Monitor monthly water consumption, compare previous vs current readings, track units consumed, and encourage household water conservation.
+                </p>
+                <a asp-page="/Portal/Usage" class="fw-bold text-decoration-none mt-auto text-info">View Meter Data <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4 border-start border-4 border-success">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-circle me-3">
+                        <i class="bi bi-diagram-3 fs-3"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Partner Integrations</h5>
+                        <small class="text-muted">Banking & Fintech API</small>
+                    </div>
+                </div>
+                <p class="text-secondary small mb-3">
+                    Integrated with Commercial Bank, Sampath Vishwa, and Dialog eZ Cash via secure SOC API keys, allowing external payments across Sri Lanka.
+                </p>
+                <a asp-page="/Features" class="fw-bold text-decoration-none mt-auto text-success">Explore Architecture <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Domestic Tariff Calculator -->
+    <div class="card card-custom p-4 mb-5 border-top border-4 border-primary">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-calculator-fill text-primary fs-3 me-2"></i>
+                    <h4 class="fw-bold mb-0">Domestic Water Tariff Calculator</h4>
+                </div>
+                <p class="text-muted small mb-4">
+                    Estimate your monthly bill in Sri Lankan Rupees (LKR) based on NWSDB's official tiered unit consumption formula.
+                </p>
+
+                <form method="post" asp-page-handler="Calculate">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Units Consumed (Cubic Meters):</label>
+                        <div class="input-group">
+                            <input type="number" asp-for="CalculatorUnits" min="0" max="200" step="1" class="form-control form-control-lg" />
+                            <button type="submit" class="btn btn-primary px-4 fw-bold">Compute Charges</button>
+                        </div>
+                        <small class="text-muted">Typical Sri Lankan household usage is 10 to 25 units per month.</small>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6">
+                @if (Model.CalculationResult != null)
+                {
+                    <div class="p-4 rounded-3 bg-light border">
+                        <h6 class="fw-bold text-primary mb-3">
+                            <i class="bi bi-receipt-cutoff me-1"></i> Estimated Breakdown for @Model.CalculationResult.UnitsConsumed Units
+                        </h6>
+                        <div class="d-flex justify-content-between py-1 border-bottom small">
+                            <span>Applicable Bracket:</span>
+                            <span class="fw-bold">@Model.CalculationResult.TierDescription</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-1 border-bottom small">
+                            <span>Water Charge:</span>
+                            <span class="fw-bold">Rs. @Model.CalculationResult.WaterCharge.ToString("N2")</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-1 border-bottom small">
+                            <span>Fixed Monthly Service Charge:</span>
+                            <span class="fw-bold">Rs. @Model.CalculationResult.FixedServiceCharge.ToString("N2")</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-1 border-bottom small">
+                            <span>VAT / Statutory Levy (2.5%):</span>
+                            <span class="fw-bold">Rs. @Model.CalculationResult.VatAmount.ToString("N2")</span>
+                        </div>
+                        <div class="d-flex justify-content-between pt-2 fs-5 text-primary fw-bold">
+                            <span>Estimated Total Amount:</span>
+                            <span class="text-success">Rs. @Model.CalculationResult.TotalAmount.ToString("N2")</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Verified Third-Party Partners Bar -->
+    <div class="card card-custom p-4 text-center">
+        <h6 class="text-muted text-uppercase fw-bold letter-spacing-1 mb-3">Integrated Payment Service Partners</h6>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
+            <span class="badge bg-light text-dark border p-3 fs-6"><i class="bi bi-bank me-2 text-primary"></i>Commercial Bank (ComBank)</span>
+            <span class="badge bg-light text-dark border p-3 fs-6"><i class="bi bi-building me-2 text-warning"></i>Sampath Bank (Sampath Vishwa)</span>
+            <span class="badge bg-light text-dark border p-3 fs-6"><i class="bi bi-phone me-2 text-danger"></i>Dialog (eZ Cash)</span>
+            <span class="badge bg-light text-dark border p-3 fs-6"><i class="bi bi-credit-card me-2 text-success"></i>Visa & Mastercard</span>
+        </div>
+    </div>
+</div>

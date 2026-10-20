@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  # NWSDB WebApp (Razor Pages Frontend)
+  nwsdb-webapp:
+    build:
+      context: .
+      dockerfile: src/NWSDB.WebApp/Dockerfile
+    container_name: nwsdb-webapp
+    ports:
+      - "5000:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      JWT_SECRET_KEY: dev-secret-key-change-in-production
+      # API endpoint - adjust if needed
+      API_URL: http://nwsdb-webapi:8080
+    depends_on:
+      - nwsdb-webapi
+    networks:
+      - nwsdb-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      # Mount for live reload during development (optional)
+      # - ./src/NWSDB.WebApp:/app
+      - webapp-logs:/app/logs
+
+  # NWSDB WebApi (ASP.NET Core API)
+  nwsdb-webapi:
+    build:
+      context: .
+      dockerfile: src/NWSDB.WebApi/Dockerfile
+    container_name: nwsdb-webapi
+    ports:
+      - "5001:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: "Data Source=/data/nwsdb_system.db"
+      JWT_SECRET_KEY: dev-secret-key-change-in-production
+      DATABASE_USERNAME: dev_user
+      DATABASE_PASSWORD: dev_password
+    networks:
+      - nwsdb-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      # Persistent database volume
+      - nwsdb-data:/data
+      - webapi-logs:/app/logs
+      # Mount for live reload during development (optional)
+      # - ./src/NWSDB.WebApi:/app
+
+  # Optional: Nginx reverse proxy for production-like setup
+  # Uncomment to use nginx as a reverse proxy with HTTPS support
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nwsdb-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./nginx/conf.d:/etc/nginx/conf.d:ro
+  #     - ./nginx/ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - nwsdb-webapp
+  #     - nwsdb-webapi
+  #   networks:
+  #     - nwsdb-network
+  #   restart: unless-stopped
+
+networks:
+  nwsdb-network:
+    driver: bridge
+
+volumes:
+  nwsdb-data:
+    driver: local
+  webapp-logs:
+    driver: local
+  webapi-logs:
+    driver: local

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nwsdb-config
+  namespace: nwsdb
+  labels:
+    app: nwsdb
+    component: configuration
+data:
+  ASPNETCORE_ENVIRONMENT: "Production"
+  ASPNETCORE_URLS: "http://+:8080"
+
+  # WebApp configuration
+  webapp.LogLevel: "Information"
+  webapp.MaxRequestBodySize: "10485760"  # 10MB
+
+  # WebApi configuration
+  webapi.LogLevel: "Information"
+  webapi.MaxRequestBodySize: "10485760"  # 10MB
+
+  # Database (update connection string as needed)
+  # For production, consider using Azure SQL Database or other managed database
+  ConnectionStrings__DefaultConnection: "Data Source=/data/nwsdb_system.db"
+
+  # Feature flags and settings
+  Features__EnableDetailedLogging: "true"
+  Features__CORSEnabled: "true"
+  Features__CORSOrigins: "http://localhost:8080,http://webapp:8080"

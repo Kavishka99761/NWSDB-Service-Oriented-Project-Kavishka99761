@@ -1,0 +1,93 @@
+@page
+@{
+    ViewData["Title"] = "Architecture & Key Features";
+}
+
+<div class="container py-4">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <span class="badge bg-primary px-3 py-2 rounded-pill fw-bold mb-2">Service-Oriented Computing Architecture</span>
+        <h2 class="fw-bold text-primary">NWSDB System Features & SOC Blueprint</h2>
+        <p class="text-muted col-lg-8 mx-auto">
+            A loosely-coupled, highly-scalable, and interoperable enterprise system engineered according to Service-Oriented Computing (SOC) principles to connect consumers, administration, and financial institutions across Sri Lanka.
+        </p>
+    </div>
+
+    <!-- Feature Pillars -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-custom h-100 p-4 border-top border-4 border-primary">
+                <i class="bi bi-gear-wide-connected text-primary fs-1 mb-3"></i>
+                <h5 class="fw-bold">Loose Coupling & Reusability</h5>
+                <p class="text-muted small">
+                    Business operations such as Tariff Calculation, Billing Generation, and Payment Settlement are encapsulated into dedicated, reusable services.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-custom h-100 p-4 border-top border-4 border-info">
+                <i class="bi bi-bank2 text-info fs-1 mb-3"></i>
+                <h5 class="fw-bold">Third-Party Interoperability</h5>
+                <p class="text-muted small">
+                    Banking partners (Commercial Bank, Sampath Vishwa, Dialog eZ Cash) integrate directly into the NWSDB API securely using standardized REST and API Keys.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-custom h-100 p-4 border-top border-4 border-success">
+                <i class="bi bi-file-earmark-spreadsheet-fill text-success fs-1 mb-3"></i>
+                <h5 class="fw-bold">ClosedXML Reporting Engine</h5>
+                <p class="text-muted small">
+                    Automated generation of executive Excel spreadsheets (`.xlsx`) with custom styling, sums, and status formatting for management audits.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card card-custom h-100 p-4 border-top border-4 border-warning">
+                <i class="bi bi-speedometer text-warning fs-1 mb-3"></i>
+                <h5 class="fw-bold">Real-Time Usage & Tariffs</h5>
+                <p class="text-muted small">
+                    Automated multi-tiered domestic tariff calculations reflecting actual consumption brackets with statutory levies and service charges.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Architecture Diagram / Breakdown Card -->
+    <div class="card card-custom p-4 mb-5">
+        <h4 class="fw-bold text-primary mb-3"><i class="bi bi-diagram-3-fill me-2"></i>Multi-Tier Service Architecture</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 25%;">Layer / Subsystem</th>
+                        <th style="width: 35%;">Components & Technologies</th>
+                        <th style="width: 40%;">Responsibility & SOC Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-bold text-primary"><i class="bi bi-window me-2"></i>Presentation Layer</td>
+                        <td>ASP.NET Core WebApp + Windows Forms Desktop App</td>
+                        <td>Multi-channel clients consuming services via REST API and Dependency Injection.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-info"><i class="bi bi-cloud-arrow-up me-2"></i>Service Layer (SOC)</td>
+                        <td>ASP.NET Core Web API + Swagger UI + Service Contracts</td>
+                        <td>Exposes endpoints for Billing, Water Usage, Payments, Partners, and Reporting.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-success"><i class="bi bi-cpu me-2"></i>Business Logic Layer</td>
+                        <td>`NWSDB.Services` + `NwsdbTariffCalculator` + ClosedXML</td>
+                        <td>Encapsulates business rules, validation, tariff tier logic, and Excel workbook compilation.</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-secondary"><i class="bi bi-database me-2"></i>Data Access Layer</td>
+                        <td>`NWSDB.Data` + Entity Framework Core + SQLite / LocalDB</td>
+                        <td>Maintains relational integrity, automatic migrations, seeding, and transaction audits.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

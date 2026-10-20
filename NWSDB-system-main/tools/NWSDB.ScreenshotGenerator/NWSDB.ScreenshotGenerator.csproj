@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NWSDB.Core\NWSDB.Core.csproj" />
+    <ProjectReference Include="..\..\src\NWSDB.Data\NWSDB.Data.csproj" />
+    <ProjectReference Include="..\..\src\NWSDB.Services\NWSDB.Services.csproj" />
+    <ProjectReference Include="..\..\src\NWSDB.DesktopApp\NWSDB.DesktopApp.csproj" />
+  </ItemGroup>
+
+</Project>

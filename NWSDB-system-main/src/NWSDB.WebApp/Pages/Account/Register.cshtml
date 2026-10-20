@@ -1,0 +1,92 @@
+@page
+@model NWSDB.WebApp.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Customer Registration";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card card-custom p-4 shadow">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold text-primary">Register Water Connection Online</h3>
+                    <p class="small text-muted">Create your NWSDB online profile to view bills and pay conveniently from home</p>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger py-2 small" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> @Model.ErrorMessage
+                    </div>
+                }
+
+                <form method="post">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Full Name</label>
+                            <input type="text" asp-for="Input.FullName" class="form-control" placeholder="e.g. Sunil Perera" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">NIC (National Identity Card)</label>
+                            <input type="text" asp-for="Input.NIC" class="form-control" placeholder="e.g. 198512345678" required />
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Login Username</label>
+                            <input type="text" asp-for="Input.Username" class="form-control" placeholder="Choose a username" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Password</label>
+                            <input type="password" asp-for="Input.Password" class="form-control" placeholder="Choose a strong password" required />
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Contact Phone Number</label>
+                            <input type="tel" asp-for="Input.Phone" class="form-control" placeholder="077 123 4567" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Email Address</label>
+                            <input type="email" asp-for="Input.Email" class="form-control" placeholder="sunil@example.com" required />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Premises Address</label>
+                        <input type="text" asp-for="Input.Address" class="form-control" placeholder="Street Address, City" required />
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Regional Area / Branch</label>
+                            <select asp-for="Input.AreaBranch" class="form-select">
+                                <option value="Colombo Central">Colombo Central</option>
+                                <option value="Kandy Regional">Kandy Regional</option>
+                                <option value="Southern Regional (Galle)">Southern Regional (Galle)</option>
+                                <option value="Gampaha Regional">Gampaha Regional</option>
+                                <option value="Northern Regional (Jaffna)">Northern Regional (Jaffna)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Existing Meter Number (Optional)</label>
+                            <input type="text" asp-for="Input.MeterNumber" class="form-control" placeholder="e.g. MTR-COL-9901" />
+                        </div>
+                    </div>
+
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold" style="background-color: #0077b6;">
+                            <i class="bi bi-person-check-fill me-2"></i> Complete Registration
+                        </button>
+                    </div>
+
+                    <div class="text-center small text-muted">
+                        Already have an account? <a asp-page="/Account/Login" class="text-primary fw-bold">Sign In here</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,182 @@
+School of Technologies
+Assessment Brief
+Module Code
+Module Title
+CSE5013
+Service Oriented Computing
+Academic Year
+Semester
+2025
+4
+Module Leader email
+gihan@icbtcampus.edu.lk
+Content
+CONTENT1
+ASSESSMENT DETAILS2
+SUBMISSION DETAILS3
+ASSESSMENT CRITERIA4
+FURTHER INFORMATION6
+Attendance
+Who can answer questions about my assessment?6
+Referencing and independent learning6
+Technical submission problems6
+Extensions and mitigating circumstances6
+Unfair academic practice6
+How is my work graded?7
+Assessment Details
+Assessment title
+Abr.
+Weighting
+Sri Lanka National Water Supply and Drainage Board(NWSDB)
+WRIT1
+100%
+Pass marks are 40% for undergraduate work and 50% for postgraduate work unless stated otherwise.
+Task/assessment brief:
+Sri Lanka National Water Supply and Drainage Board(NWSDB) is planning to provide better customer service and also reduce the cost of operation. NWSDB is planning to extend its bill payment facilities with more third-party partners to provide more convenience for customers. Also to plan to provide the most up-to-date payment and current usage details quickly for customers. NWSDB plans to include these features in its current system and main company website and also other third-party applications as well. NWSDB is looking to develop these features in a way that can be integrated with a variety of platforms and across organizational boundaries.
+Based on the above-mentioned requirements, you need to develop a SOC-based solution. Implement the necessary requirements as services and also build client applications to consume via API. (The API project must be developed using .NET technologies, and the client application can be built using .NET or any other platform.)
+Tasks:
+Explain how Monolithic architecture and Service-oriented architecture models can be used for this case study. Compare and contrast both architectures and justify the best architecture based on maintainability and scalability. (20 marks) (LO1)
+Design and develop a suitable application based on SOC. Need to implement the services and also must create a client application to consume the services. Should provide all source codes with suitable design diagrams. Need to use proper coding standards and must focus on the reusability and maintainability of the application (60 marks) (LO2,LO3)
+Properly test the developed application and should be able to demonstrate the debugging process and testing results. (10 marks) (LO3)
+Explain deployment techniques that are suitable for the developed application (Server, Docker, Kubernetes, etc). (10 marks) (LO4)
+Word count (or equivalent):3000
+This a reflection of the effort required for the assessment. Word counts will normally include source code, any text, tables, calculations, figures, subtitles and citations. Reference lists and contents of appendices are excluded from the word count. Contents of appendices are not usually considered when determining your final assessment grade.
+Academic or technical terms explained:Academic or technical terms explained:
+Academic or technical terms explained:
+Academic or technical terms explained:
+SOC – Service-oriented computing SOA – Service-oriented applicationAPI - Application Programming Interface. It acts as a messenger between different software applications, allowing them to communicate and exchange data.Understand -Involves grasping the meaning of information, ideas, or concepts. It goes beyond simply memorizing facts and requires interpreting, explaining, and summarizing the information in your own words.Design –Creating something new, whether it's a plan, a process, a product, or a solution to a problem. It requires using your understanding to generate something original and functional.Develop –Creating: This refers to taking an existing design and building upon it, refining it, or bringing it to life. This involves a high degree of originality and innovation.Applying: This signifies using existing knowledge or skills to create something new, but not necessarily something completely original. It involves adapting and implementing existing concepts in a new context.Evaluate –This involves making judgments about the value, worth, or effectiveness of something. It requires analyzing information, identifying strengths and weaknesses, and comparing it to established criteria or standards.SOC – Service-oriented computing SOA – Service-oriented applicationAPI - Application Programming Interface. It acts as a messenger between different software applications, allowing them to communicate and exchange data.Understand -Involves grasping the meaning of information, ideas, or concepts. It goes beyond simply memorizing facts and requires interpreting, explaining, and summarizing the information in your own words.Design –Creating something new, whether it's a plan, a process, a product, or a solution to a problem. It requires using your understanding to generate something original and functional.Develop –Creating: This refers to taking an existing design and building upon it, refining it, or bringing it to life. This involves a high degree of originality and innovation.Applying: This signifies using existing knowledge or skills to create something new, but not necessarily something completely original. It involves adapting and implementing existing concepts in a new context.Evaluate –This involves making judgments about the value, worth, or effectiveness of something. It requires analyzing information, identifying strengths and weaknesses, and comparing it to established criteria or standards.
+SOC – Service-oriented computing SOA – Service-oriented application
+API - Application Programming Interface. It acts as a messenger between different software applications, allowing them to communicate and exchange data.
+Understand -
+Involves grasping the meaning of information, ideas, or concepts. It goes beyond simply memorizing facts and requires interpreting, explaining, and summarizing the information in your own words.
+Design –
+Creating something new, whether it's a plan, a process, a product, or a solution to a problem. It requires using your understanding to generate something original and functional.
+Develop –
+Creating: This refers to taking an existing design and building upon it, refining it, or bringing it to life. This involves a high degree of originality and innovation.
+Applying: This signifies using existing knowledge or skills to create something new, but not necessarily something completely original. It involves adapting and implementing existing concepts in a new context.
+Evaluate –
+This involves making judgments about the value, worth, or effectiveness of something. It requires analyzing information, identifying strengths and weaknesses, and comparing it to established criteria or standards.
+SOC – Service-oriented computing SOA – Service-oriented application
+API - Application Programming Interface. It acts as a messenger between different software applications, allowing them to communicate and exchange data.
+Understand -
+Involves grasping the meaning of information, ideas, or concepts. It goes beyond simply memorizing facts and requires interpreting, explaining, and summarizing the information in your own words.
+Design –
+Creating something new, whether it's a plan, a process, a product, or a solution to a problem. It requires using your understanding to generate something original and functional.
+Develop –
+Creating: This refers to taking an existing design and building upon it, refining it, or bringing it to life. This involves a high degree of originality and innovation.
+Applying: This signifies using existing knowledge or skills to create something new, but not necessarily something completely original. It involves adapting and implementing existing concepts in a new context.
+Evaluate –
+This involves making judgments about the value, worth, or effectiveness of something. It requires analyzing information, identifying strengths and weaknesses, and comparing it to established criteria or standards.
+Submission Details
+Submission Deadline:
+This will be provided on the Moodle submission point.
+Estimated Feedback Return Date
+This will normally be 20 working days after initial submission.
+Submission Time:
+By 2.00pm on the deadline day.
+Moodle/Turnitin:
+Any assessments submitted after the deadline will not be marked and will be recorded as a non-attempt unless you have had an extension request agreed or have approved mitigating circumstances. See the School Moodle pages for more information on extensions and mitigating circumstances.
+File Format:
+The assessment must be submitted as a pdf document (save the document as a pdf in your software) and submit through the Turnitin submission point in Moodle.
+Your assessment should be titled with your:
+student ID number, module code and assessment ID,
+e.g. st12345678 CSE5013 WRIT1
+Feedback
+Feedback for the assessment will be provided electronically via Moodle. Feedback will be provided with comments on your strengths and the areas which you can improve. View the guidance on how to access your feedback.
+All marks are provisional and are subject to quality assurance processes and confirmation at the programme Examination Board.
+Learning outcomes assessedOther skills/attributes developedThis includes elements of the Cardiff Met EDGE (Ethical, Digital, Global and Entrepreneurial skills) and other attributes developed in students through the completion of the module and assessment. These will also be highlighted in the module guidance, which should be read by all students completing the module. Assessments are not just a way of auditing student knowledge. They are a process which provides additional learning and development through the preparation for and completion of the assessment.Understand Service oriented architecture and patterns.Design service application solution by applying SO conceptsDevelop service service-oriented applicationCritically evaluate the suitable delivery environment and deploy service application.Learning outcomes assessedOther skills/attributes developedThis includes elements of the Cardiff Met EDGE (Ethical, Digital, Global and Entrepreneurial skills) and other attributes developed in students through the completion of the module and assessment. These will also be highlighted in the module guidance, which should be read by all students completing the module. Assessments are not just a way of auditing student knowledge. They are a process which provides additional learning and development through the preparation for and completion of the assessment.Understand Service oriented architecture and patterns.Design service application solution by applying SO conceptsDevelop service service-oriented applicationCritically evaluate the suitable delivery environment and deploy service application.Assessment Criteria
+Learning outcomes assessed
+Other skills/attributes developed
+This includes elements of the Cardiff Met EDGE (Ethical, Digital, Global and Entrepreneurial skills) and other attributes developed in students through the completion of the module and assessment. These will also be highlighted in the module guidance, which should be read by all students completing the module. Assessments are not just a way of auditing student knowledge. They are a process which provides additional learning and development through the preparation for and completion of the assessment.
+Understand Service oriented architecture and patterns.
+Design service application solution by applying SO concepts
+Develop service service-oriented application
+Critically evaluate the suitable delivery environment and deploy service application.
+Learning outcomes assessed
+Other skills/attributes developed
+This includes elements of the Cardiff Met EDGE (Ethical, Digital, Global and Entrepreneurial skills) and other attributes developed in students through the completion of the module and assessment. These will also be highlighted in the module guidance, which should be read by all students completing the module. Assessments are not just a way of auditing student knowledge. They are a process which provides additional learning and development through the preparation for and completion of the assessment.
+Understand Service oriented architecture and patterns.
+Design service application solution by applying SO concepts
+Develop service service-oriented application
+Critically evaluate the suitable delivery environment and deploy service application.
+ETHICAL
+Understanding the importance of protecting user data within service interactions. This includes adhering to data privacy regulations and implementing secure coding practices.
+DIGITAL
+Deconstructing complex problems into smaller, manageable service components and designing solutions with clear interfaces. Understanding how cloud platforms can host and manage services, ensuring scalability
+and reliability.
+GLOBAL
+Being aware of international regulations and standards that might impact service development and data handling. Embracing diverse perspectives and being flexible in adapting service design to meet the needs of global
+contexts.
+ENTREPRENEURIAL
+Identifying opportunities to create new businesses or to enhance the existing process using services oriented application development.
+Marking/Assessment CriteriaMarking/Assessment Criteria
+Marking/Assessment Criteria
+Marking/Assessment Criteria
+Task
+Poor
+< 40
+Satisfactory 40 - 54
+Good 55 -69
+Excellent 70 -100
+Understanding of Architecture, Comparison, and Contrast
+Demonstrates minimal understanding of both monolithic and SOA architectures, confusing key concepts. Fails to compare and contrast the two architectures in a meaningful way.
+Provides a basic overview of both architectures, but explanations lack clarity and depth. Provides a superficial comparison, focusing on generic differences without addressing the specific context of the case study.
+Clearly explains the key characteristics and functionalities of both monolithic and SOA architectures, including advantages and disadvantages. Identifies key differences between the two architectures, highlighting how they impact maintainability and scalability. Explains how SOA's modularity and loose coupling enable easier maintenance and scaling compared to the monolithic approach.
+Provides a comprehensive comparison with detailed explanations of how each architecture addresses the challenges of the case study. Justifies the choice of SOA based on specific criteria like maintainability (modular design, independent deployments) and scalability (horizontal scaling of individual services). Provides a comprehensive and insightful comparison, analyzing the trade-offs between the two architectures in the context of the case study. Demonstrates a clear understanding of how SOA's characteristics directly address the challenges of maintainability and
+scalability for the manufacturer-supplier communication system.
+SOC Application Design and Development
+No design diagrams or documentation are provided, making understanding the application difficult. The code is poorly written, lacks modularity, and makes future modifications difficult. The application lacks core functionalities or is incomplete, failing to implement the key services required for the case study.
+Design diagrams are present but lack clarity or detail.
+Documentation is incomplete or inaccurate. Code demonstrates some modularity but lacks a clear separation of concerns, making maintenance challenging. The application implements basic functionalities but lacks key features or suffers from significant bugs.
+Design diagrams are clear and accurate, representing the application architecture and service interactions. The documentation is comprehensive and provides clear instructions for usage and future. The code is modular and well-organized, with a clear separation of concerns. Services are designed for reusability in potential future. The application implements core functionalities with a user-friendly interface
+and implement the required services.
+Design diagrams are detailed and professional-looking, showcasing the application's structure and flow. Documentation is thorough, informative, and easy to follow, including code comments and API. Code is highly modular and reusable, with a clear separation of concerns and well-documented interfaces. Design choices prioritize maintainability and future enhancements. The application is well-designed and implemented, with all required functionalities working seamlessly. The user interface is intuitive and user-friendly. Code is well-structured, documented, and adheres to coding standards.
+Testing Scope and Coverage
+No testing is conducted, or only limited testing is performed on basic functionalities.
+Basic testing is performed, but coverage is limited, and critical functionalities might not be
+tested.
+Core functionalities are tested with some level of automation. Debugging skills are demonstrated for identified issues.
+Comprehensive testing strategies are implemented, including unit, integration, and functional testing. Testing results are analyzed and documented. Effective debugging skills are demonstrated, resolving
+issues efficiently.
+Understanding of Deployment Options
+Demonstrates limited understanding of different deployment techniques or provides inaccurate
+explanations.
+Provides a basic understanding of deployment options but fails to explain their suitability for the specific application.
+Explains suitable deployment techniques for the developed application (e.g., Server, Docker, Kubernetes) and their advantages and disadvantages.
+Provides a comprehensive analysis of deployment options, considering factors like scalability, maintainability, and cost-effectiveness. Justifies the chosen approach based on the specific needs of the application
+Further Information
+Attendence
+Regular attendance is highly encouraged and directly impacts your learning success in this module. A minimum of 80% attendance is expected.
+Students with attendance below 80% will be required to showcase their knowelegde as requested by the module lecturer. Fail to do so may result of retaking the entire module.
+In exceptional cases (e.g., documented medical emergencies), alternative arrangements may be considered. Please discuss these with the module lecturer as soon as possible.
+Who can answer questions about my assessment?
+Questions about the assessment should be directed to the staff member who has set the task/assessment brief. This will usually be the Module Leader. They will be happy to answer any queries you have.
+Staff members can often provide feedback on an assignment plan but cannot review any drafts of your work prior to submission. The only exception to this rule is for Dissertation Supervisors to provide feedback on a draft of your dissertation.
+Referencing and independent learning
+Please ensure you reference a range of credible sources, with due attention to the academic literature in the area. The time spent on research and reading from good quality sources will be reflected in the quality of your submitted work.
+Remember that what you get out of university depends on what you put in. Your teaching sessions typically represent between 10% and 30% of the time you are expected to study for your degree. A 20-credit module represents 200 hours of study time. The rest of your time should be taken up by self-directed study.
+Unless stated otherwise you must use the HARVARD referencing system. Further guidance on referencing can be found in the Study Smart area on Moodle and at www.citethemrightonline.com (use your university login details to access the site).
+Correct referencing is an easy way to improve your marks and essential in achieving higher grades on most assessments.
+Technical submission problems
+It is strongly advised that you submit your work at least 24 hours before the deadline to allow time to resolve any last minute problems you might have. If you are having issues with IT or Turnitin you should contact the IT Helpdesk on (+44) 2920 417000. You may require evidence of the Helpdesk call if you are trying to demonstrate that a fault with Moodle or Turnitin was the cause of a late submission.
+Extensions and mitigating circumstances
+Short extensions on assessment deadlines can be requested in specific circumstances. If you are encountering particular hardship which has been affecting your studies, then you may be able to apply for mitigating circumstances. This can give the teachers on your programme more scope to adapt the assessment requirements to support your needs. Extensions and mitigating circumstances policies and procedures are regularly updated. You should refer to your degree programme or school Moodle pages for information on extensions and mitigating circumstances.
+Unfair academic practice
+Cardiff Met takes issues of unfair practice extremely seriously. The University has procedures and penalties for dealing with
+1111unfair academic practice. These are explained in full in the University's Unfair Practice regulations and procedures under Volume 1, Section 8 of the Academic Handbook. The Module Leader reserves the right to interview students regarding any aspect of their work submitted for assessment.
+11
+11
+Types of Unfair Practice, include:
+Plagiarism, which can be defined as using without acknowledgement another person’s words or ideas and submitting them for assessment as though it were one’s own work, for instance by copying, translating from one language to another or unacknowledged paraphrasing. Further examples include:
+Use of any quotation(s) from the published or unpublished work of other persons, whether published in textbooks, articles, the Web, or in any other format, where quotations have not been clearly identified as such by being placed in quotation marks and acknowledged.
+Use of another person’s words or ideas that have been slightly changed or paraphrased to make it look different from the original.
+Summarising another person’s ideas, judgments, diagrams, figures, or computer programmes without reference to that person in the text and the source in a bibliography/reference list.
+Use of assessment writing services, essay banks and/or any other similar agencies (NB. Students are commonly being blackmailed after using essay mills).
+Use of unacknowledged material downloaded from the Internet.
+Re-use of one’s own material except as authorised by your degree programme.
+Collusion, which can be defined as when work that that has been undertaken with others is submitted and passed off as solely the work of one person. Modules will clearly identify where joint preparation and joint submission are permitted, in all other cases they are not.
+Fabrication of data, making false claims to have carried out experiments, observations, interviews or other forms of data collection and analysis, or acting dishonestly in any other way.
+How is my work graded?
+Assessment grading is subject to thorough quality control processes. You can view a summary of these processes on the Assessment Explained Infographic.
+Grading of work at each level of Cardiff Met degree courses is benchmarked against a set of general requirements set out in Volume 1, Section 4.3 of our Academic Handbook. A simplified version of these Grade Band Descriptors (GBDs) with short videos explaining some of the academic terminology used can be accessed via the Facilitation of Learning resource page.
+We would strongly recommend looking at the Study Smart area of Moodle to find out more about assessments and key academic skills which can have a significant impact on your grades. Always check your work thoroughly before submission.

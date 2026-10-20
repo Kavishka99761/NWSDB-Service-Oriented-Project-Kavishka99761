@@ -1,0 +1,230 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var username = HttpContextAccessor.HttpContext?.Session.GetString("Username");
+    var accountNo = HttpContextAccessor.HttpContext?.Session.GetString("AccountNumber");
+    var role = HttpContextAccessor.HttpContext?.Session.GetString("Role");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NWSDB Sri Lanka</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+        :root {
+            --nwsdb-primary: #003366;
+            --nwsdb-secondary: #0077b6;
+            --nwsdb-accent: #00b4d8;
+            --nwsdb-light: #f0f8ff;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f8f9fc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar-nwsdb {
+            background: linear-gradient(135deg, #002244 0%, #004080 100%);
+            box-shadow: 0 4px 12px rgba(0, 34, 68, 0.15);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-link {
+            font-weight: 500;
+            transition: color 0.2s ease-in-out;
+        }
+        .nav-link:hover {
+            color: #90e0ef !important;
+        }
+        .btn-nwsdb {
+            background-color: #0077b6;
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-nwsdb:hover {
+            background-color: #005f94;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .btn-pay-now {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: white;
+            font-weight: 700;
+            border-radius: 50px;
+            padding: 8px 22px;
+            box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
+        }
+        .btn-pay-now:hover {
+            background: linear-gradient(135deg, #0096c7, #023e8a);
+            color: white;
+            box-shadow: 0 6px 14px rgba(0, 180, 216, 0.4);
+        }
+        .card-custom {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            background: #fff;
+        }
+        .card-header-nwsdb {
+            background: linear-gradient(135deg, #003366, #005599);
+            color: white;
+            border-top-left-radius: 12px !important;
+            border-top-right-radius: 12px !important;
+            font-weight: 600;
+        }
+        footer {
+            margin-top: auto;
+            background-color: #001a33;
+            color: #d1d5db;
+        }
+        .badge-pending {
+            background-color: #ffeaa7;
+            color: #d63031;
+            font-weight: 600;
+        }
+        .badge-paid {
+            background-color: #55efc4;
+            color: #00b894;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Top Gov Bar -->
+        <div class="bg-dark text-white py-1 px-3 d-none d-md-block" style="font-size: 0.85rem; background-color: #00182e !important;">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="me-3"><i class="bi bi-droplet-half text-info me-1"></i> Sri Lanka National Water Supply and Drainage Board</span>
+                    <span><i class="bi bi-telephone-inbound-fill text-warning me-1"></i> 24/7 Hotline: <strong>1939</strong></span>
+                </div>
+                <div>
+                    <a href="http://localhost:5000/swagger" target="_blank" class="text-info text-decoration-none me-3">
+                        <i class="bi bi-gear-fill me-1"></i> Swagger API Docs
+                    </a>
+                    <span>English | සිංහල | தமிழ்</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-nwsdb py-3">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" asp-page="/Index">
+                    <i class="bi bi-droplet-fill text-info fs-3 me-2"></i>
+                    <div>
+                        <span class="fs-4 d-block lh-1 text-white">NWSDB</span>
+                        <small style="font-size: 0.65rem; color: #90e0ef; letter-spacing: 1px;">WATER BOARD SRI LANKA</small>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMain">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-page="/Index"><i class="bi bi-house-door me-1"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-page="/Payment"><i class="bi bi-credit-card-2-front me-1"></i> Online Payment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-page="/Features"><i class="bi bi-grid-fill me-1"></i> Features & SOC</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-page="/Contact"><i class="bi bi-geo-alt-fill me-1"></i> Contact Us</a>
+                        </li>
+
+                        @if (!string.IsNullOrEmpty(accountNo))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-info fw-bold" href="#" id="portalDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle me-1"></i> Customer Portal
+                                </a>
+                                <ul class="dropdown-menu shadow">
+                                    <li><a class="dropdown-item" asp-page="/Portal/Dashboard"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" asp-page="/Portal/Usage"><i class="bi bi-speedometer me-2"></i> Water Usage</a></li>
+                                    <li><a class="dropdown-item" asp-page="/Portal/Bills"><i class="bi bi-receipt me-2"></i> Bill Details</a></li>
+                                    <li><a class="dropdown-item" asp-page="/Portal/Payments"><i class="bi bi-clock-history me-2"></i> Payment History</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <a asp-page="/Payment" class="btn btn-pay-now btn-sm me-2">
+                            <i class="bi bi-lightning-charge-fill me-1"></i> Pay Bill Online
+                        </a>
+
+                        @if (!string.IsNullOrEmpty(username))
+                        {
+                            <span class="text-white-50 me-2 small">Hi, <strong class="text-white">@username</strong></span>
+                            <a asp-page="/Account/Logout" class="btn btn-outline-light btn-sm">Logout</a>
+                        }
+                        else
+                        {
+                            <a asp-page="/Account/Login" class="btn btn-outline-light btn-sm">Login</a>
+                            <a asp-page="/Account/Register" class="btn btn-info text-dark fw-bold btn-sm">Register</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="flex-grow-1 py-4">
+        @RenderBody()
+    </main>
+
+    <footer class="py-4 mt-auto">
+        <div class="container text-center text-md-start">
+            <div class="row g-4">
+                <div class="col-md-5">
+                    <h5 class="text-white fw-bold"><i class="bi bi-droplet-fill text-info me-2"></i>NWSDB Sri Lanka</h5>
+                    <p class="small text-muted mb-2">
+                        Sri Lanka National Water Supply and Drainage Board (NWSDB) is committed to providing safe, reliable, and sustainable water supply and sanitation services across Sri Lanka.
+                    </p>
+                    <p class="small text-muted mb-0">Module: <strong>CSE5013 - Service Oriented Computing</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="text-white fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-1"><a asp-page="/Payment" class="text-muted text-decoration-none">Online Bill Payment</a></li>
+                        <li class="mb-1"><a asp-page="/Features" class="text-muted text-decoration-none">Service Oriented Architecture</a></li>
+                        <li class="mb-1"><a asp-page="/Contact" class="text-muted text-decoration-none">Customer Service & Hotline 1939</a></li>
+                        <li class="mb-1"><a href="http://localhost:5000/swagger" target="_blank" class="text-muted text-decoration-none">REST API Swagger</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-white fw-bold mb-3">24-Hour Emergency Helpline</h6>
+                    <div class="p-3 rounded bg-secondary bg-opacity-25 border border-secondary">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-headset text-info fs-1 me-3"></i>
+                            <div>
+                                <h4 class="text-warning mb-0 fw-bold">1939</h4>
+                                <small class="text-white-50">Toll Free Service Across Sri Lanka</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary opacity-50" />
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-muted">
+                <div>&copy; 2026 National Water Supply and Drainage Board (NWSDB). All Rights Reserved.</div>
+                <div>Cardiff Metropolitan University / ICBT Campus Coursework Solution</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

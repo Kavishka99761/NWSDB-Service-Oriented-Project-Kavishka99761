@@ -1,0 +1,87 @@
+@page
+@model NWSDB.WebApp.Pages.Portal.BillsModel
+@{
+    ViewData["Title"] = "Customer Bill Details";
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold text-primary mb-1"><i class="bi bi-receipt me-2"></i>Water Bills & Charge Breakdown</h3>
+            <p class="text-muted mb-0">Monthly billing slips for Account <strong>@(Model.Customer?.AccountNumber ?? "ACC10001")</strong> (@Model.Customer?.FullName)</p>
+        </div>
+        <div>
+            <a asp-page="/Payment" asp-route-accountNumber="@(Model.Customer?.AccountNumber ?? "ACC10001")" class="btn btn-warning fw-bold">
+                <i class="bi bi-lightning-charge-fill me-1"></i> Pay Bills Online
+            </a>
+        </div>
+    </div>
+
+    <!-- Bills Table -->
+    <div class="card card-custom p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Billing Month</th>
+                        <th>Units</th>
+                        <th>Water Charge (Rs.)</th>
+                        <th>Fixed Charge (Rs.)</th>
+                        <th>VAT / Levy (Rs.)</th>
+                        <th>Total Amount (Rs.)</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Bills.Any())
+                    {
+                        @foreach (var b in Model.Bills)
+                        {
+                            <tr>
+                                <td class="font-monospace text-muted">#@b.Id</td>
+                                <td class="fw-bold text-primary">@b.MonthYear</td>
+                                <td>@b.UnitsConsumed</td>
+                                <td>@b.WaterCharge.ToString("N2")</td>
+                                <td>@b.FixedServiceCharge.ToString("N2")</td>
+                                <td>@b.VatAmount.ToString("N2")</td>
+                                <td class="fw-bold fs-6 text-dark">Rs. @b.TotalAmount.ToString("N2")</td>
+                                <td>@b.DueDate.ToString("yyyy-MM-dd")</td>
+                                <td>
+                                    @if (b.Status == NWSDB.Core.Enums.BillStatus.Paid)
+                                    {
+                                        <span class="badge bg-success px-3 py-1">PAID</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger px-3 py-1">PENDING</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (b.Status != NWSDB.Core.Enums.BillStatus.Paid)
+                                    {
+                                        <a asp-page="/Payment" asp-route-accountNumber="@b.AccountNumber" class="btn btn-sm btn-primary py-1 px-3">
+                                            Pay
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-success small fw-bold"><i class="bi bi-check2"></i> Settled</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="10" class="text-center text-muted py-3">No bills recorded for this account.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

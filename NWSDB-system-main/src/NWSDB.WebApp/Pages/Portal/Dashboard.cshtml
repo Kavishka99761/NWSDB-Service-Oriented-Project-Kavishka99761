@@ -1,0 +1,154 @@
+@page
+@model NWSDB.WebApp.Pages.Portal.DashboardModel
+@{
+    ViewData["Title"] = "Customer Portal Dashboard";
+}
+
+<div class="container py-4">
+    @if (Model.DashboardData != null)
+    {
+        <!-- Header Profile Banner -->
+        <div class="card card-custom p-4 mb-4 bg-primary text-white" style="background: linear-gradient(135deg, #002b5c, #00509e) !important;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                <div>
+                    <span class="badge bg-info text-dark mb-2">Registered Water Consumer</span>
+                    <h3 class="fw-bold mb-1">@Model.DashboardData.Customer.FullName</h3>
+                    <p class="mb-0 text-white-50">
+                        <i class="bi bi-hash"></i> Account: <strong>@Model.DashboardData.Customer.AccountNumber</strong> |
+                        <i class="bi bi-speedometer2"></i> Meter: <strong>@Model.DashboardData.Customer.MeterNumber</strong> |
+                        <i class="bi bi-geo-alt"></i> @Model.DashboardData.Customer.Address
+                    </p>
+                </div>
+                <div class="mt-3 mt-md-0 text-md-end">
+                    <span class="text-white-50 small d-block">Outstanding Balance:</span>
+                    <h2 class="fw-bold @(Model.DashboardData.Customer.CurrentOutstandingBalance > 0 ? "text-warning" : "text-light") mb-2">
+                        Rs. @Model.DashboardData.Customer.CurrentOutstandingBalance.ToString("N2")
+                    </h2>
+                    @if (Model.DashboardData.Customer.CurrentOutstandingBalance > 0)
+                    {
+                        <a asp-page="/Payment" asp-route-accountNumber="@Model.DashboardData.Customer.AccountNumber" class="btn btn-warning fw-bold px-4">
+                            <i class="bi bi-lightning-fill me-1"></i> Pay Now
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Summary Cards -->
+        <div class="row g-4 mb-4">
+            <!-- Latest Bill -->
+            <div class="col-md-4">
+                <div class="card card-custom h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-primary mb-0">Latest Bill Status</h6>
+                        <i class="bi bi-receipt fs-4 text-primary"></i>
+                    </div>
+                    @if (Model.DashboardData.CurrentBill != null)
+                    {
+                        <div class="mb-2">
+                            <span class="badge @(Model.DashboardData.CurrentBill.Status == NWSDB.Core.Enums.BillStatus.Paid ? "bg-success" : "bg-danger") px-3 py-1">
+                                @Model.DashboardData.CurrentBill.Status
+                            </span>
+                            <span class="text-muted small ms-2">Month: @Model.DashboardData.CurrentBill.MonthYear</span>
+                        </div>
+                        <h3 class="fw-bold mb-1">Rs. @Model.DashboardData.CurrentBill.TotalAmount.ToString("N2")</h3>
+                        <small class="text-muted d-block mb-3">Due Date: @Model.DashboardData.CurrentBill.DueDate.ToString("yyyy-MM-dd")</small>
+                        <a asp-page="/Portal/Bills" class="small fw-bold text-decoration-none">View Breakdown <i class="bi bi-arrow-right"></i></a>
+                    }
+                    else
+                    {
+                        <p class="text-muted small">No bill records found.</p>
+                    }
+                </div>
+            </div>
+
+            <!-- Latest Meter Usage -->
+            <div class="col-md-4">
+                <div class="card card-custom h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-info mb-0">Recent Consumption</h6>
+                        <i class="bi bi-speedometer2 fs-4 text-info"></i>
+                    </div>
+                    @if (Model.DashboardData.LatestUsage != null)
+                    {
+                        <h3 class="fw-bold text-info mb-1">@Model.DashboardData.LatestUsage.UnitsConsumed <span class="fs-6 text-muted">Units (m³)</span></h3>
+                        <div class="small text-muted mb-2">
+                            <span>Reading Period: @Model.DashboardData.LatestUsage.MonthYear</span><br />
+                            <span>Meter: @Model.DashboardData.LatestUsage.PreviousReading &rarr; @Model.DashboardData.LatestUsage.CurrentReading</span>
+                        </div>
+                        <a asp-page="/Portal/Usage" class="small fw-bold text-info text-decoration-none mt-auto">View Usage Log <i class="bi bi-arrow-right"></i></a>
+                    }
+                    else
+                    {
+                        <p class="text-muted small">No meter readings recorded.</p>
+                    }
+                </div>
+            </div>
+
+            <!-- Portal Shortcuts -->
+            <div class="col-md-4">
+                <div class="card card-custom h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-success mb-0">Services & Actions</h6>
+                        <i class="bi bi-grid fs-4 text-success"></i>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a asp-page="/Payment" asp-route-accountNumber="@Model.DashboardData.Customer.AccountNumber" class="btn btn-outline-primary btn-sm text-start">
+                            <i class="bi bi-credit-card me-2"></i> Pay Outstanding Bill
+                        </a>
+                        <a asp-page="/Portal/Bills" class="btn btn-outline-secondary btn-sm text-start">
+                            <i class="bi bi-receipt-cutoff me-2"></i> View Past Billing Slips
+                        </a>
+                        <a asp-page="/Portal/Payments" class="btn btn-outline-info btn-sm text-start text-dark">
+                            <i class="bi bi-clock-history me-2"></i> Download Receipts
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Payments Table -->
+        <div class="card card-custom p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-primary mb-0"><i class="bi bi-clock-history me-2"></i>Recent Payments</h5>
+                <a asp-page="/Portal/Payments" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Receipt Reference</th>
+                            <th>Date</th>
+                            <th>Method</th>
+                            <th>Account / Card</th>
+                            <th>Amount (Rs.)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.DashboardData.RecentPayments.Any())
+                        {
+                            @foreach (var p in Model.DashboardData.RecentPayments)
+                            {
+                                <tr>
+                                    <td class="fw-bold text-primary">@p.PaymentReference</td>
+                                    <td>@p.PaymentDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                    <td>@p.Method</td>
+                                    <td class="font-monospace text-muted">@p.MaskedAccount</td>
+                                    <td class="fw-bold text-success">Rs. @p.Amount.ToString("N2")</td>
+                                    <td><span class="badge bg-success">@p.Status</span></td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-3">No payments recorded yet.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
